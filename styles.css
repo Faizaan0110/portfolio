@@ -485,3 +485,41 @@ h1{
   height: auto;
   overflow: visible;
 }
+/* ---------- Mobile layout fix: stop section overlap ---------- */
+@media (max-width: 920px){
+
+  /* Let sections grow naturally on mobile */
+  .section,
+  .hero{
+    min-height: auto;
+    align-items: stretch;
+  }
+
+  /* Remove fixed container height that causes overlap */
+  .section .container{
+    height: auto;
+    overflow: visible;
+    margin-bottom: 32px;
+  }
+
+  /* Disable "internal scroll sections" on mobile */
+  .section--scroll .container{
+    overflow: visible;
+    padding-right: 0;
+    margin-bottom: 32px;
+  }
+
+  /* Contact: remove the desktop hack that pulls it upward */
+  #contact{
+    padding-top: 32px;
+    padding-bottom: 32px;
+    min-height: auto;
+  }
+
+  #contact .container{
+    margin-top: 0;
+    margin-bottom: 32px;
+    height: auto;
+    overflow: visible;
+  }
+}
