@@ -30,6 +30,60 @@
 *{ box-sizing: border-box; }
 html{ scroll-behavior: smooth; }
 html, body{ height: 100%; }
+html{
+  min-height: 100%;
+  background: linear-gradient(
+    135deg,
+    #0b0d12 0%,
+    #0f172a 50%,
+    #0b0d12 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 100%;      /* stretch to full page */
+  background-attachment: fixed;    /* optional: keeps it stable while scrolling */
+}
+
+/* ===== Clean section separators (doesn't break scroll sections) ===== */
+.section{
+  position: relative;
+}
+
+/* Divider between Hero and About (About is the first <section>) */
+.section{
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+/* Optional: give a little breathing room so the line doesn't touch content */
+.section{
+  padding-top: calc(var(--section-pad) + 18px);
+}
+
+/* If you DON'T want a line above About, comment this out.
+   If you DO want the hero->about line, keep it (recommended). */
+.section{
+  position: relative;
+  padding-top: calc(var(--section-pad) + 18px);
+}
+
+.section::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255,255,255,0.12),
+    transparent
+  );
+  pointer-events: none;
+}
+
+body{
+  background: transparent;         /* important so html background shows */
+}
 
 body{
   margin: 0;
@@ -37,11 +91,11 @@ body{
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
   color: var(--text);
   line-height: 1.55;
-  background:
-    radial-gradient(900px 400px at 20% 10%, rgba(120,170,255,0.18), transparent 60%),
-    radial-gradient(900px 450px at 80% 0%, rgba(180,120,255,0.16), transparent 60%),
-    radial-gradient(800px 500px at 50% 90%, rgba(80,255,210,0.10), transparent 60%),
-    var(--bg);
+  background: linear-gradient(
+    135deg,
+    #0b0d12 0%,
+    #0f172a 50%,
+    #0b0d12 100% )
 }
 
 a{ color: var(--text); text-decoration: none; }
@@ -130,6 +184,7 @@ a:hover{ text-decoration: underline; }
   scroll-margin-top: var(--nav-h);
   display: flex;
   align-items: flex-start;
+  background: transparent;
 }
 
 .section .container{
@@ -160,12 +215,11 @@ a:hover{ text-decoration: underline; }
 
 .section--alt{
   padding-top: 22px;
-  margin-top:0px;
   margin-bottom: 40px;
-  background: rgba(255,255,255,0.02);
-  border-top: 1px solid rgba(255,255,255,0.06);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: transparent;
+  border: none;
 }
+
 
 .section h2{
   margin: 0 0 30px;
@@ -522,4 +576,15 @@ h1{
     height: auto;
     overflow: visible;
   }
+  /* ---------- Mobile: unified background ---------- */
+  body{
+    background: var(--bg);
+  }
+
+  /* Remove section background variations */
+  .section,
+  .hero{
+    background: transparent;
+  }
+
 }
